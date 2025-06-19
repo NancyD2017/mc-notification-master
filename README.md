@@ -90,15 +90,27 @@ git clone https://github.com/NancyD2017/NotificationService.git
 cd mc-notification-master
 
 5. Откройте проект в вашей IDE (например, IntelliJ IDEA или Eclipse).
-6. Настройте подключение к базе данных PostgreSQL в файле application.yml:
+6. Настройте подключение к базе данных PostgreSQL в файле application.yml, а также добавьте вашу почту для отправления email-уведомлений:
 
 datasource:
 
-url: jdbc:postgresql://${HOST:localhost}/notifications_db
+    url: jdbc:postgresql://${HOST:localhost}/notifications_db
 
-username: ${POSTGRES_USER:postgres}
+    username: ${POSTGRES_USER:postgres}
 
-password: ${POSTGRES_PASSWORD:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}
+
+mail:
+
+    host: smtp.yandex.ru
+    
+    port: 465
+    
+    username: <Введите свою почту>
+    
+    password: <Введите свой пароль>
+    
+    protocol: smtps
 
 7. Соберите и запустите проект с помощью Gradle:
 
