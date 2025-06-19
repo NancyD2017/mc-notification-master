@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: mc-notification
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    consumer:
+      group-id: notification-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "skillbox.notification.dto.events"
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://${HOST:localhost}/notifications_db
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}
+    hikari:
+      schema: ${POSTGRES_SCHEMA:notifications_schema}
+  mail:
+    host: smtp.yandex.ru
+    port: 465
+    username: anastasia.alifanowa2017@yandex.ru
+    password: vrfchqdcztfdrcrq
+    protocol: smtps
+    properties:
+      mail:
+        smtps:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+        debug: true
+
+eureka:
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://${EUREKA-HOST:localhost}:8761/eureka/
+    fetch-registry: true
+  instance:
+    hostname: ${mc-notification:localhost}
+    prefer-ip-address: true
+
+server:
+  port: 8084
