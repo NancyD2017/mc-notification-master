@@ -80,7 +80,7 @@ Notification types supported: `MESSAGE`, `FRIEND_REQUEST`, `FRIEND_BIRTHDAY`, `P
 
 ---
 
-## 📬 API Reference
+## API Reference
 
 ### Create Notification
 ```http
@@ -105,14 +105,6 @@ Content-Type: application/json
   "notificationType": "MESSAGE"
 }
 ```
-
----
-
-## Architecture
-
-<!-- Architecture diagram: Show the microservice's position within the social network system.
-     Include: API Gateway → NotificationService → PostgreSQL (storage) and Kafka (event bus connecting to other services like UserService, PostService) -->
-> *Architecture diagram coming soon*
 
 ---
 
